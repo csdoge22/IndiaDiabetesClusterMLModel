@@ -1,24 +1,18 @@
-# We will use Selenium for web scraping
 import os
-import shutil
-import requests
-from selenium import webdriver
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# library to load environment variables
 from dotenv import load_dotenv
 
 load_dotenv()
+BASE_DIR = os.getenv("BASE_DIR")
+diabetes_csv = pd.read_csv(os.path.join(BASE_DIR,"diabetes_prediction_india.csv"))
 
-driver = webdriver.Firefox()
-driver.get("https://www.google.com/search?safe=active&sca_esv=5149ab7345a4c72f&q=banana+fruit&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBsxayPSIAqObp_AgjkUGqekYoUzDaOcDDjQfK4KpR2OIjj43mhrQBsMJgHY2LSx-SUj4wz68xSZ8iYTfqgrdxb3MJvHOMODdIcpti-xYMckL_DuO7Mno3LlWlsnznPPjfINcnPSb3s0mY1_Udv3xmGYGwDe_3zR2JNQT7OndwaUM5c3nJw&sa=X&ved=2ahUKEwiylIfr7pSLAxVclokEHeCWGGQQtKgLegQICxAB&biw=2560&bih=1328&dpr=1")
+"""TODO: Clean Up Data """
+diabetes_csv = diabetes_csv.drop_duplicates().dropna()
 
-images = driver.find_elements(by='xpath', value="//div[@style='height:180px']//img")
-
-BASE_URL = os.getenv("BASE_URL")
-
-for i in range(len(images)):
-    src = images[i].get_attribute("src")
-    
-    response = requests.get(src, stream=True)
-    with open(os.path.join(BASE_URL,f'banana{i}.png'), 'wb') as out_file:
-        shutil.copyfileobj(response.raw, out_file)
-    
-    del response
+# print(diabetes_csv)
+print(diabetes_csv.dtypes)
+"""TODO: Train and Test the Model """
