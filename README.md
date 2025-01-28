@@ -1,1 +1,1 @@
-# BananaClassifier
+# Diabetes Predictor in India
