@@ -19,7 +19,9 @@ load_dotenv()
 BASE_DIR = os.getenv("BASE_DIR")
 diabetes_csv = pd.read_csv(os.path.join(BASE_DIR,"diabetes_prediction_india.csv"))
 
-"""TODO: Find a Goal for this ML Model"""
+"""TODO: Understand how to combine data for a more accurate regression"""
+
+
 
 """TODO: Clean Up Data """
 diabetes_csv = diabetes_csv.drop_duplicates().dropna()
