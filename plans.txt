@@ -1,0 +1,5 @@
+What contributes to diabetes:
+
+- High age
+- BMI
+- Fasting Blood sugar
