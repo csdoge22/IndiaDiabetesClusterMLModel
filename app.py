@@ -1,16 +1,24 @@
 # library used to access directories and the .env file (NOT SHOWN for security reasons)
 import os
+from statistics import mode
 
 # libraries to visualize and organize data
 import numpy as np
+
 import pandas as pd
+
+# plotting utilities
 import matplotlib.pyplot as plt
 import matplotlib
+from matplotlib import cm, colors
+
+# for styling clusters made in the scatter plot (also a plot utility)
 import seaborn as sns
 
 # libraries to treat categorical variables within the dataframe
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, normalize, StandardScaler
 from sklearn.cluster import KMeans
+from sklearn.metrics import accuracy_score
 
 # libraries to train the model
 from sklearn.model_selection import train_test_split
@@ -76,7 +84,6 @@ corr_matrix = diabetes_csv.corr()
 diabetes_csv.reset_index(drop=True, inplace=True)
 
 print(diabetes_csv)
-"""TODO: Train and Test the Model """
 df_age = diabetes_csv['Age'].to_numpy()
 df_bmi = diabetes_csv['BMI'].to_numpy()
 df_fbs = diabetes_csv['Fasting_Blood_Sugar'].to_numpy()
@@ -93,27 +100,58 @@ for i in range(len(df_smoking)):
     y_data.append(df_smoking[i]+ df_alcohol[i]+df_vdl[i])
 print(y_data)
 
-fig, ax = plt.subplots()
+# fig, ax = plt.subplots()
 #plt.boxplot([x_data,y_data], label=['X Data','Y Data'])
 #plt.savefig("axisboxplots.png")
 
+# plt.title("Deviation graph of likelihood for getting diabetes")
+# plt.xlabel("Sums of Age, BMI, Fasting Blood Pressure, Smoking Status, Alcohol Intake, and Vitamin D Level")
+# plt.ylabel("Frequencies of the Sums")
 # plt.hist(x=x_data, label='X Data')
 # plt.hist(x=y_data, label='Y Data')
 # plt.savefig("diabeteshistogram.png")
 
+plt.xlabel("Sum of Age, BMI, and Fasting Blood Pressure")
+plt.ylabel("Sum of Smoking Status, Alcohol Intake, and Vitamin D Level")
 plt.scatter(x=x_data, y=y_data)
 plt.savefig("idscatter.png")
 
 
-# y_data = np.array(diabetes_csv['Smoking_Status'])
+# Train and Test the ML Model
+x_data = np.array(x_data).reshape(-1, 1)
+y_data = np.array(y_data).reshape(-1, 1)
+X_train, X_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.3, random_state=42)
 
-# for i in range(len(y_data)):
-#     y_data[i] = diabetes_csv['Smoking_Status'].loc[i]+diabetes_csv['Alcohol_Intake'].loc[i]+diabetes_csv['Stress_Level'].loc[i]
+# Normalize the data using StandardScaler
+scaler = StandardScaler()
+X_train_norm = scaler.fit_transform(X_train)
+X_test_norm = scaler.transform(X_test)
+y_train_norm = scaler.fit_transform(y_train)
+y_test_norm = scaler.transform(y_test)
 
-# We will omit fields that are indirectly proportional to an increased risk of diabetes
-# plt.scatter(x_data,y_data)
+# Apply KMeans clustering
+n_clusters = 3
+kmeans = KMeans(n_clusters=n_clusters, random_state=0, n_init='auto')
+clusters = kmeans.fit_predict(X_train_norm)  # Get cluster labels
 
+# These lines create the scatterplot
+plt.figure(figsize=(8, 6))
+scatter = sns.scatterplot(
+    x=X_train_norm[:, 0], 
+    y=y_train[:, 0], 
+    hue=clusters, 
+    palette=sns.color_palette("tab10", n_clusters),  # Ensure distinct colors
+    edgecolor="k"
+)
 
-# we will try training with less and incrementing more until the ML model is accurate
-# X_train, X_test, y_train, y_test = train_test_split(x_data,y_data,test_size=0.9)
+# Create a colorbar for the legend
+handles, labels = scatter.get_legend_handles_labels()
+plt.legend(title="Cluster Label", handles=handles, labels=labels)
 
+# Titles and labels
+plt.title("Scatterplot of Normalized Training Data with Clusters")
+plt.xlabel("Normalized X Data")
+plt.ylabel("Y Data")
+
+# Save and show plot
+plt.savefig("normalized_training_scatter.png")
