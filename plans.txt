@@ -1,5 +1,14 @@
 What contributes to diabetes:
 
+X-axis:
 - High age
 - BMI
 - Fasting Blood sugar
+
+Y-axis:
+- Smoking Status
+- Alcohol Intake
+- Vitamin D Level
+
+Plan for phase 2:
+- Make a logistic regression model for predicting whether people have diabetes given their stats

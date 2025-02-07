@@ -1,3 +1,5 @@
+""" First ML model created """
+
 # library used to access directories and the .env file (NOT SHOWN for security reasons)
 import os
 from statistics import mode
