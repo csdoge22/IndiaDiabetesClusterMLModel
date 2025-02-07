@@ -2,7 +2,7 @@
 
 Link to Dataset: https://www.kaggle.com/datasets/ankushpanday1/diabetes-prediction-in-india-dataset/data
 
-Technologies Used:
+## Technologies Used:
 * Python (main programming language)
 * NumPy (mathematial library and array processing)
 * Pandas
@@ -10,10 +10,11 @@ Technologies Used:
 * Matplotlib (library to aid)
 * Scikit Learn (primary library used to train the machine learning models)
 
-Technologies Not Used Yet:
+## Technologies Not Used Yet:
 * MongoDB (universal database and cache for improving time used to predict whether the person has diabetes)
 * Docker (containerization software for 
 
-Phases:
+# Phases:
 1. K-Means Clustering Model for grouping similar people in the dataset and how likely they are to have diabetes
-2. Binary Logistic Regression Model for predicting whether people have diabetes or not
+2. Regression Models for identifying trends in dataset columns
+3. Binary Logistic Regression Model for predicting whether people have diabetes or not
