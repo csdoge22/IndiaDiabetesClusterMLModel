@@ -13,6 +13,7 @@ from sklearn.preprocessing import Normalizer, PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import confusion_matrix
+from sklearn.pipeline import Pipeline
 
 matplotlib.use('Agg')
 
@@ -33,8 +34,6 @@ for i in range(len(fasting_blood_sugar)):
 x_data = fasting_blood_sugar.reshape(-1,1)
 y_data = average_blood_sugar.reshape(-1,1)
 
-
-
 X_train, X_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.2, random_state=42)
 
 def linear_regression():
@@ -46,29 +45,36 @@ def linear_regression():
     print("TRAINING: ",lin_reg.score(X_train,y_train))
     print("TESTING: ",lin_reg.score(X_test,y_test))
 
-    slope, intercept, r, p, std_err = stats.linregress(x_data, y_data)
-
-    def myfunc(x):
-        return slope * x + intercept
-
-    linear_model = list(map(myfunc, x_data))
+    y_pred = lin_reg.predict(X=X_test)
     
-    stats.linregress()
     plt.xlabel(xlabel= "Age")
     plt.ylabel(ylabel="Average Blood Sugar")
     plt.scatter(x=x_data, y=y_data)
-    plt.plot(x_data,linear_model)
+    plt.plot(X_test, y_pred, color='red')
     plt.savefig("age_sugar_correlation.png")
 
-def polynomial_regression(degree: int):
-    lin_reg = PolynomialFeatures(degree)
-    lin_reg.fit(X_train,y_train)
-
-    print("LINEAR REGRESSION ACCURACIES: ")
-    print("TRAINING: ",lin_reg.score(X_train,y_train))
-    print("TESTING: ",lin_reg.score(X_test,y_test))
-
+def polynomial_regression(degree):
+    
+    def pr_pipeline(degree):
+        return Pipeline([
+            ('poly', PolynomialFeatures(degree=degree)),
+            ('linear', LinearRegression())
+        ])
+    
+    model = pr_pipeline(degree=degree)
+    model.fit(x_data,y_data)
+    
+    y_pred = model.predict(X=X_test)
+    
     plt.xlabel(xlabel= "Age")
     plt.ylabel(ylabel="Average Blood Sugar")
     plt.scatter(x=x_data, y=y_data)
+    plt.plot(X_test, y_pred, color='red')
     plt.savefig("age_sugar_correlation.png")
+    plt.savefig(f"polynomial{degree}_age_sugar_correlation.png")
+
+    print("POLYNOMIAL REGRESSION ACCURACIES: ")
+    print("TRAINING: ",model.score(X_train,y_train))
+    print("TESTING: ",model.score(X_test,y_test))
+    
+polynomial_regression(10)
