@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../static/styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+
+        </script>
+    </head>
+    <body>
+        <!-- Navigation Bar, will add more features as the app progresses -->
+        <nav class="d-flex justify-content-center nav">
+            <a class="nav-link">Home</a>
+            <a class="nav-link">About</a>
+            <a class="nav-link">Diabetes Predictor</a>
+            <a class="nav-link">Help</a>
+        </nav>
+        <h1 class="d-flex justify-content-center">Add a person to the dataset</h1>
+        <div class="mx-auto d-flex justify-content-center">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="Age" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="Gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="bmi">BMI</label>
+                    <input type="number" step="any" id="bmi" name="BMI" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="family_history">Family History</label>
+                    <select id="family_history" name="Family_History" required>
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="physical_activity">Physical Activity</label>
+                    <input type="text" id="physical_activity" name="Physical_Activity">
+                </div>
+
+                <div class="form-group">
+                    <label for="diet_type">Diet Type</label>
+                    <input type="text" id="diet_type" name="Diet_Type">
+                </div>
+
+                <div class="form-group">
+                    <label for="smoking_status">Smoking Status</label>
+                    <select id="smoking_status" name="Smoking_Status" required>
+                        <option value="">Select</option>
+                        <option value="Smoker">Smoker</option>
+                        <option value="Non-Smoker">Non-Smoker</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                <label for="alcohol_intake">Alcohol Intake</label>
+                <input type="text" id="alcohol_intake" name="Alcohol_Intake">
+                </div>
+
+                <div class="form-group">
+                <label for="stress_level">Stress Level</label>
+                <input type="text" id="stress_level" name="Stress_Level">
+                </div>
+
+                <div class="form-group">
+                <label for="hypertension">Hypertension</label>
+                <select id="hypertension" name="Hypertension" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="cholesterol_level">Cholesterol Level</label>
+                <input type="text" id="cholesterol_level" name="Cholesterol_Level">
+                </div>
+
+                <div class="form-group">
+                <label for="fasting_blood_sugar">Fasting Blood Sugar</label>
+                <input type="number" step="any" id="fasting_blood_sugar" name="Fasting_Blood_Sugar">
+                </div>
+
+                <div class="form-group">
+                <label for="postprandial_blood_sugar">Postprandial Blood Sugar</label>
+                <input type="number" step="any" id="postprandial_blood_sugar" name="Postprandial_Blood_Sugar">
+                </div>
+
+                <div class="form-group">
+                <label for="hba1c">HBA1C</label>
+                <input type="number" step="any" id="hba1c" name="HBA1C">
+                </div>
+
+                <div class="form-group">
+                <label for="heart_rate">Heart Rate</label>
+                <input type="number" id="heart_rate" name="Heart_Rate">
+                </div>
+
+                <div class="form-group">
+                <label for="waist_hip_ratio">Waist Hip Ratio</label>
+                <input type="number" step="any" id="waist_hip_ratio" name="Waist_Hip_Ratio">
+                </div>
+
+                <div class="form-group">
+                <label for="urban_rural">Urban/Rural</label>
+                <select id="urban_rural" name="Urban_Rural">
+                    <option value="">Select</option>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="health_insurance">Health Insurance</label>
+                <select id="health_insurance" name="Health_Insurance" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="regular_checkups">Regular Checkups</label>
+                <select id="regular_checkups" name="Regular_Checkups" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="medication_for_chronic_conditions">Medication For Chronic Conditions</label>
+                <input type="text" id="medication_for_chronic_conditions" name="Medication_For_Chronic_Conditions">
+                </div>
+
+                <div class="form-group">
+                <label for="pregnancies">Pregnancies</label>
+                <input type="number" id="pregnancies" name="Pregnancies">
+                </div>
+
+                <div class="form-group">
+                <label for="polycystic_ovary_syndrome">Polycystic Ovary Syndrome</label>
+                <select id="polycystic_ovary_syndrome" name="Polycystic_Ovary_Syndrome" required>
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="glucose_tolerance_test_result">Glucose Tolerance Test Result</label>
+                <input type="text" id="glucose_tolerance_test_result" name="Glucose_Tolerance_Test_Result">
+                </div>
+
+                <div class="form-group">
+                <label for="vitamin_d_level">Vitamin D Level</label>
+                <input type="number" step="any" id="vitamin_d_level" name="Vitamin_D_Level">
+                </div>
+
+                <div class="form-group">
+                <label for="c_protein_level">C Protein Level</label>
+                <input type="number" step="any" id="c_protein_level" name="C_Protein_Level">
+                </div>
+
+                <div class="form-group">
+                <label for="thyroid_condition">Thyroid Condition</label>
+                <input type="text" id="thyroid_condition" name="Thyroid_Condition">
+                </div>
+
+                <div class="form-group">
+                <label for="diabetes_status">Diabetes Status</label>
+                <select id="diabetes_status" name="Diabetes_Status" required>
+                    <option value="">Select</option>
+                    <option value="Positive">Positive</option>
+                    <option value="Negative">Negative</option>
+                    <option value="Pre-diabetic">Pre-diabetic</option>
+                </select>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

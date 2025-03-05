@@ -60,16 +60,16 @@ diabetes_csv.to_csv("NumerifiedData.csv", index="Index")
 corr_matrix = diabetes_csv.corr()
 
 # Create the heatmap
-# plt.figure(figsize=(10, 8))  # Set the figure size
-# sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True, square=True)
+plt.figure(figsize=(10, 8))  # Set the figure size
+sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True, square=True)
 
 # Add titles and labels
-# plt.title("Correlation Heatmap", fontsize=16)
+plt.title("Correlation Heatmap", fontsize=16)
 
-# plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readability
-# plt.yticks(rotation=0)
-# plt.tight_layout()  # Adjust layout to prevent label cutoff
-# plt.show()
+plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels for better readability
+plt.yticks(rotation=0)
+plt.tight_layout()  # Adjust layout to prevent label cutoff
+plt.savefig("heatmap.png")
 
 # Have only the necessary columns for processing
 # x_axis = np.array(diabetes_csv['Age'])
