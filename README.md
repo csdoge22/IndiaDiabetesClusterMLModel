@@ -16,10 +16,4 @@ Link to Dataset: https://www.kaggle.com/datasets/ankushpanday1/diabetes-predicti
 
 ## Algorithms Used:
 * K-Means Clustering (identify similarity of people in the dataset, probably relevant to the goal)
-* Linear Regression and Polynomial Features (
-* Logistic Regression (Simple Yes or No to determine whether people have diabetes or not)
-
-# Phases:
-1. K-Means Clustering Model for grouping similar people in the dataset and how likely they are to have diabetes
-2. Regression Models for identifying trends in dataset columns
-3. Webapp and 
+* Linear Regression and Polynomial Features
